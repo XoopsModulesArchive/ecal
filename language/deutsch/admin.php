@@ -1,0 +1,57 @@
+<?php
+
+define('_EVENTADMIN', 'Kalender Admin');
+define('_ADDITEM', 'Einträge zum Kalender hinzufügen');
+define('_CONFEVENT', 'Konfiguration');
+define('_DELEVENT', 'löschen');
+define('_EVEDATESTRING', '%d-%m-%Y %H:%M');
+define('_THEREIS', 'Es gibt');
+define('_USER', 'Benutzername');
+define('_SUB', 'Betreff');
+define('_DATEVENT', 'Datum');
+define('_NUM', '#');
+define('_OPTIONEV', 'Option');
+define('_VALID', 'Übernehmen');
+define('_EVENTS', 'Veranstaltungen');
+define('_EVENTSWAIT', 'wartende Veranstaltungen');
+define('_NOEVENTS', 'Keine Veranstaltungen in der Datenbank');
+define('_CAL_MODERATE', 'Moderiere Veranstaltungen:');
+define('_ANNOEVENT', 'Anonymous kann Veranstaltungen eintragen');
+define('_DAYCOLOREV', 'Farbe Tag');
+define('_OK_DEL', 'Die Veranstaltung wurde gelöscht.');
+define('_OK_UPDATE', 'Veranstaltung wurde übernommen');
+define('_NO_AUTHORIZ', 'Du bist zum Ausführen dieser Operation nicht berechtigt!!');
+define('_OUI', 'Ja');
+define('_NON', 'Nein');
+define('_OKCONFIG', 'Die Konfiguration wurde erfolgreich gespeichert!');
+
+define('_CALJAN', 'Januar');
+define('_CALFEB', 'Februar');
+define('_CALMAR', 'März');
+define('_CALAPR', 'April');
+define('_CALMAY', 'Mai');
+define('_CALJUN', 'Juni');
+define('_CALJUL', 'Juli');
+define('_CALAUG', 'August');
+define('_CALSEP', 'September');
+define('_CALOCT', 'Oktober');
+define('_CALNOV', 'November');
+define('_CALDEC', 'Dezember');
+define('_MSG3', 'Ändere eine Veranstaltung');
+define('_MSG4', 'Ändere oder übernehme eine Veranstaltung');
+define('_D', 'Tag');
+define('_TSHOW', 'Uhrzeit ( hh:mm:ss )');
+define('_SUBSHOW', 'Betreff');
+define('_DESC', 'Beschreibung');
+define('_CAL_URL', 'URL');
+define('_ERRORMSG1', 'Du kannst nicht nichts aus der Tabelle löschen.');
+define('_ERRORMSG5', 'Die Veranstaltung wurde geändert');
+define('_CAL_MODIF', 'Ändern');
+
+define('_CAL_ANNACCEPT', 'Deine Veranstaltung wurde eingetragen.');
+define('_CAL_HELLO', 'Hallo');
+define('_CAL_CONSULTTO', 'Du siehst es als ');
+define('_CAL_THANK', 'Danke');
+define('_CAL_TEAMOF', 'Team of');
+define('_NEXTNCOUNT', 'Anzahl der Einträge im Block nächste Termine.');
+define('_BLCKLMT', 'Anzahl der Einträge im Block Termine des Monats.');

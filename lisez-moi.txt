@@ -1,0 +1,21 @@
+#####################################################
+#  Based on PHP-NUKE: eCalendar System
+#  by Don Grabowski Don@ecomjunk.com -  http://ecomjunk.com
+#
+#  Calendrier version 2.2 Beta for Xoops 1.0 RC3
+#  Copyright © 2002, Pascal Le Boustouller
+#  pascal@xoopsien.net - http://www.xoopsien.net
+#  Licence: GPL
+#
+#  Merci de laisser ce copyright en place...
+#####################################################
+
+
++ installation : 
+- décompressez les fichiers et répertoires dans le répertoire modules de Xoops.
+- très IMPORTANT passez le fichier config.php (du répertoire modules/eCal/cache/) en CHMOD 666
+- pour installer le Calandrier, activer le module Calendrier dans votre administration
+à l'installation des tables et de la configuration du Calandrier, cette configuration pourra être modifié ensuite en allant dans l'administration de ce module.
+
+
+sylvain B. webmaster of XOOPS V2.0.1 SITE TEST

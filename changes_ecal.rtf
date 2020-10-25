@@ -1,0 +1,69 @@
+#######################################################################################
+By felix Zaslavskiy 
+June 4 , 2004 , felix@students.poly.ed
+Added use of HTTP_GET/POST_VARS for external variables so that module 
+can work with register_globals turned off
+Added initialization for bunch variables so that Undifiened Variable 
+warnning does not show up
+Commented out include of language file in header.php
+language file is already included in xoops/include/common.php
+Moved userTimeOffset to functions.h , used the function instead of 
+duplicating same code
+inlude function.h in blocks/eCal.php and admin/index.php
+added quotes to strings used for indexing arrays in various files
+so that undefined index warnning does not show up
+in display-events-admin.php commented out CloseTable()
+simplified access check in action.php line 88
+corrected loop in action.php line 92
+added _VALID constant to english/admin.php
+misspelled constatn in admin/action.php line 67
+changes $submitter to $username in admin/action.php line 67
+###########################################################################################
+By sylvain B.
+To have the date in francais format edit in :
+- ...\modules\eCal\blocks\eCal.php at line 206 replace :
+$Cdt = strftime("%d/%m",strtotime($stamp));//--> francais date format
+$Cdt = strftime("%m/%d",strtotime($stamp));//--> english date format
+###########################################################################################
+By efnefn
+For viewing only futures events from this day in admin events (we consider that a past event will not be modified) edit :
+...\modules\eCal\admin\index.php and add at line 49 :
+$usertimevent = time() + ($useroffset*3600);
+$currentday = date("j", $usertimevent);
+$currentmonth = date("m", $usertimevent);
+$currentyear = date("Y", $usertimevent);
+and replace now at line 97 (who was before line 94) :
+$query = mysql_query("SELECT * FROM ".$xoopsDB->prefix("eCal")." WHERE valid = 'yes' ORDER BY stamp ASC");
+by :
+$query = mysql_query("SELECT * FROM ".$xoopsDB->prefix("eCal")." WHERE valid = 'yes' AND (stamp >= \"$currentyear-$currentmonth-$currentday 00:00:00\") ORDER BY stamp ASC");
+###########################################################################################
+By Kotshiro/sylvain B.
+Code adding for viewing waiting events in "waiting content" block in :
+...\modules\system\blocks\system_blocks.php at line 216/217 before "return $block;" :
+if ($module_handler->getCount(new Criteria('dirname', 'eCal'))) {
+$result = $xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("eCal")." WHERE valid='No'");
+if ( $result ) {
+$block['modules'][7]['adminlink'] = XOOPS_URL."/modules/eCal/admin/index.php";
+list($block['modules'][7]['pendingnum']) = $xoopsDB->fetchRow($result);
+$block['modules'][7]['lang_linkname'] = _MB_SYSTEM_SUBEVENT;
+}
+}
+Note : Adjust the "$block['modules']" number with your configuration.
+More, in ...\modules\system\language\francais\blocks.php add :
+define("_MB_SYSTEM_SUBEVENT","Waiting(s) Event(s)");
+###########################################################################################
+By sylvain B.
+Adding francais define for events blocks in ...\modules\eCal\language\francais\blocks.php
+define("_NOEVENTSCHED","Aucun(s) &eacute;v&egrave;nement(s)");
+Plus modifications in ...\modules\eCal\blocks\eCal.php :
+Replacement of : = "no events scheduled"; by : = _NOEVENTSCHED;
+###########################################################################################
+By sylvain B.
+Update of bg1-5 class in all eCal module files by the new one for xoops v2.rc2.
+I hope that traductions are not to bad to be understanding by everyone...;-) sylvain B.
+###########################################################################################
+By sylvain B. 2004/04/21
+- Tooltip adding on dates in mini calender block.
+- Theme adding in popup window events when viewing details of an event.
+- Updates of : version number of eCal (2.23), copyright from Pascal and new logo.
+###########################################################################################

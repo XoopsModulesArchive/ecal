@@ -1,0 +1,41 @@
+###########################################################################################
+Par sylvain B.
+Pour bénéficier du format de date français/anglais :
+- Dans ...\modules\eCal\blocks\eCal.php à la ligne 206 remplacer :
+$Cdt = strftime("%d/%m",strtotime($stamp));//--> Format français
+$Cdt = strftime("%m/%d",strtotime($stamp));//--> Format anglais
+###########################################################################################
+Par efnefn
+Pour n'afficher que les évènements à venir à partir d'aujourd'hui dans l'administration (on considère qu'un évènement passé n'est plus à modifier)fichier index.php dans
+...\modules\eCal\admin\index.php rajouter ligne 49 :
+$usertimevent = time() + ($useroffset*3600);
+$currentday = date("j", $usertimevent);
+$currentmonth = date("m", $usertimevent);
+$currentyear = date("Y", $usertimevent);
+et remplacer ce qui devient la ligne 97 (en lieu et place de la ligne 94) :
+$query = mysql_query("SELECT * FROM ".$xoopsDB->prefix("eCal")." WHERE valid = 'yes' ORDER BY stamp ASC");
+par :
+$query = mysql_query("SELECT * FROM ".$xoopsDB->prefix("eCal")." WHERE valid = 'yes' AND (stamp >= \"$currentyear-$currentmonth-$currentday 00:00:00\") ORDER BY stamp ASC");
+###########################################################################################
+Par Kotshiro/sylvain B.
+Rajout de code pour visualisation des évènements en attente dans le bloc "contenu en attente" dans ...\modules\system\blocks\system_blocks.php à la ligne 216/217 avant "return $block;" :
+if ($module_handler->getCount(new Criteria('dirname', 'eCal'))) {
+$result = $xoopsDB->query("SELECT COUNT(*) FROM ".$xoopsDB->prefix("eCal")." WHERE valid='No'");
+if ( $result ) {
+$block['modules'][7]['adminlink'] = XOOPS_URL."/modules/eCal/admin/index.php";
+list($block['modules'][7]['pendingnum']) = $xoopsDB->fetchRow($result);
+$block['modules'][7]['lang_linkname'] = _MB_SYSTEM_SUBEVENT;
+}
+}
+De plus, dans ...\modules\system\language\francais\blocks.php ajouter :
+define("_MB_SYSTEM_SUBEVENT","Ev&egrave;nement(s)");
+###########################################################################################
+Par sylvain B.
+Rajout de define pour les blocs évènements dans ...\modules\eCal\language\francais\blocks.php
+define("_NOEVENTSCHED","Aucun(s) &eacute;v&egrave;nement(s)");
+Plus modifications dans ...\modules\eCal\blocks\eCal.php :
+Remplacement de : = "no events scheduled"; par : = _NOEVENTSCHED;
+###########################################################################################
+Par sylvain B.
+Mise à jour des classes bg1-5 de tous les fichiers du module par les nouvelles classes xoops v2.rc2 correspondantes.
+###########################################################################################
